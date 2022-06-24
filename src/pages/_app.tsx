@@ -21,11 +21,17 @@ import ModalAdBlock from 'src/components/modal/modal-adblock/ModalAdBlock';
 import { I18nextProvider } from 'react-i18next';
 import { useState } from 'react';
 
+import { SessionProvider } from "next-auth/react"
+
 import i18n from '../i18n';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ 
+  Component, 
+  pageProps: { session, ...pageProps }, 
+}) {
   const store = useStore(pageProps.initialReduxState);
   const adBlockDetected = useDetectAdBlock();
+  console.log(`adBlockDetected ${adBlockDetected}`);
   const [ isShowingMobileBurger, setIsShowingMobileBurger ] = useState(false);
   const handleMobileBurgerClick = () => {
     setIsShowingMobileBurger(current => !current);
@@ -54,9 +60,11 @@ function MyApp({ Component, pageProps }: AppProps) {
                     isShowingMobileBurger={isShowingMobileBurger}
                   />
                   <SwitchAccount />
-                  <MainPage>
-                    <Component {...pageProps} />
-                  </MainPage>
+                  <SessionProvider session={session}>
+                    <MainPage>
+                      <Component {...pageProps} />
+                    </MainPage>
+                  </SessionProvider>
                 </AuthProvider>
               </ApiProvider>
             </ResponsiveProvider>
