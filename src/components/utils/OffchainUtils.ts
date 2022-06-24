@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Activity } from '@subsocial/types';
 import { nonEmptyStr } from '@subsocial/utils';
+import { config as inputConfig } from '../../config';
 
 type ActivityType =
   | 'follows'
@@ -10,9 +11,8 @@ type ActivityType =
   | 'spaces'
   | 'counts';
 
-const offchainUrl = 'https://dev-subsocial.codebridge.tech/offchain';
 function getOffchainUrl(subUrl: string): string {
-  return `${offchainUrl}/v1/offchain${subUrl}`;
+  return `${inputConfig.offchainUrl}/v1/offchain${subUrl}`;
 }
 
 export const createActivitiesUrlByAddress = (
