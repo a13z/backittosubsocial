@@ -25,10 +25,8 @@ import { SessionProvider } from "next-auth/react"
 
 import i18n from '../i18n';
 
-function MyApp({ 
-  Component, 
-  pageProps: { session, ...pageProps }, 
-}) {
+function MyApp({ Component, pageProps} : AppProps) 
+  {
   const store = useStore(pageProps.initialReduxState);
   const adBlockDetected = useDetectAdBlock();
   console.log(`adBlockDetected ${adBlockDetected}`);
@@ -60,7 +58,7 @@ function MyApp({
                     isShowingMobileBurger={isShowingMobileBurger}
                   />
                   <SwitchAccount />
-                  <SessionProvider session={session}>
+                  <SessionProvider session={pageProps.session} refetchInterval={0}>
                     <MainPage>
                       <Component {...pageProps} />
                     </MainPage>
