@@ -1,7 +1,7 @@
 export const config = {
   appName: 'rSocial',
   ipfsUrl: `https://staging.subsocial.network/ipfs/ipfs`,
-  substrateNodeUrl: `wss://pc-testnet.subsocial.network/stg-ws`,
+  substrateNodeUrl: `wss://testnet.subsocial.network`,
   offchainUrl: `https://staging.subsocial.network/offchain`,
   offchainWs: `wss://staging.subsocial.network/notif-ws`,
   addFileUrl: `https://staging.subsocial.network/offchain/v1/ipfs/addFile`,
@@ -14,7 +14,7 @@ export const config = {
   isOffChainFeed: false,
   enableTips: false,
   recommendedSpaceIds: [
-    '1001',
-    '1002',
+    '1017',
+    '1018',
   ],
 }
