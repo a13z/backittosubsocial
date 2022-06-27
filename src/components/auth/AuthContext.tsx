@@ -24,7 +24,7 @@ export const AuthContext = createContext<ContextType>({
   hasToken: false,
 });
 
-export const AuthProvider: FC = (props) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }>  = (props) => {
   const [status, setStatus] = useState(ACCOUNT_STATUS.INIT);
   const [isAlert, setIsAlert] = useState(false);
   const [hasToken, setHasToken] = useState(false);

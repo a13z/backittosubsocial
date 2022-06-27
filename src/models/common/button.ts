@@ -21,6 +21,7 @@ export interface ButtonCancelProps {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export interface ButtonCommentProps extends IconButtonProps {

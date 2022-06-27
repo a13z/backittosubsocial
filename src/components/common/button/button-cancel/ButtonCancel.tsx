@@ -3,7 +3,8 @@ import styles from './ButtonCancel.module.sass';
 import ButtonComponent from '../button-component/ButtonComponent';
 import { ButtonCancelProps } from 'src/models/common/button';
 
-const ButtonCancel: FC<ButtonCancelProps> = (props) => {
+
+const ButtonCancel: React.FC<ButtonCancelProps> = (props) => {
   const className = props.className
     ? `${styles.button} ${props.className}`
     : styles.button;

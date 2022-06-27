@@ -34,7 +34,7 @@ export async function initSubsocialApi() {
   return await newFlatSubsocialApi(config);
 }
 
-export const ApiProvider: FC = (props) => {
+export const ApiProvider: React.FC<{ children: React.ReactNode }>  = (props) => {
   const [ api, setApi ] = useState<FlatSubsocialApi>({} as FlatSubsocialApi);
   const [ substrateApi, setSubstrateApi ] = useState<ApiPromise>({} as ApiPromise);
   const { isLoader, toggleLoader } = useLoader();
@@ -69,7 +69,7 @@ export const ApiProvider: FC = (props) => {
       }}
     />
   ) : (
-    <ApiContext.Provider value={{ api, substrateApi }}>{props.children}</ApiContext.Provider>
+    <ApiContext.Provider value={{ api, substrateApi }}>{ props.children }</ApiContext.Provider>
   );
 };
 

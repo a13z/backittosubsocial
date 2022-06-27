@@ -48,7 +48,7 @@ const loadMoreAccountsFn = async (
   return accountsIds;
 };
 
-const ModalConnections: FC<ModalConnectionsProps> = ({
+const ModalConnections: React.FC<ModalConnectionsProps> = ({
   activeTab,
   accountId,
   countFollowing = 0,
@@ -70,7 +70,7 @@ const ModalConnections: FC<ModalConnectionsProps> = ({
   const dispatch = useAppDispatch();
 
   const loadMore = useCallback(
-    (page, size) =>
+    (page: any, size: any) =>
       loadMoreAccountsFn({
         size,
         page,

@@ -20,11 +20,12 @@ export interface AccountProps {
   posts?: number;
   withBalance?: boolean;
   hiddenBlock?: ReactNode;
+  children?: ReactNode;
 }
 
 export type AccountDescriptionProps = Pick<
   AccountProps,
-  'about' | 'summary' | 'isShowMore'
+  'about' | 'summary' | 'isShowMore' | 'children'
 >;
 
 export interface Account {

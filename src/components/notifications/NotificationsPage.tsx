@@ -11,7 +11,7 @@ type NotificationPageProps = {
   children: React.ReactNode;
 };
 
-const NotificationsPage: NextPage = ({ children }) => {
+const NotificationsPage: NextPage<{ children: React.ReactNode }> = ({ children }) => {
   const { t } = useTranslation();
 
   return (

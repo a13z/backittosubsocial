@@ -3,13 +3,13 @@ import '../styles/github-markdown.sass';
 import 'easymde/dist/easymde.min.css';
 
 import type { AppProps } from 'next/app';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material';
 import { theme } from '../stylesheets/theme';
 import Header from '../components/header/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import { SwitchAccount } from '../components/switch-account/SwitchAccount';
 import Head from 'next/head';
-import { StyledEngineProvider } from '@mui/material/styles';
+// import { StyledEngineProvider } from '@mui/material/styles';
 import { useStore } from '../store/app/store';
 import { Provider } from 'react-redux';
 import MainPage from '../components/layout/MainPage';
@@ -21,7 +21,7 @@ import ModalAdBlock from 'src/components/modal/modal-adblock/ModalAdBlock';
 import { I18nextProvider } from 'react-i18next';
 import { useState } from 'react';
 
-import { SessionProvider } from "next-auth/react"
+import { SessionProvider } from "next-auth/react";
 
 import i18n from '../i18n';
 

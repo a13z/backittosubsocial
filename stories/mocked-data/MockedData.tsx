@@ -15,7 +15,7 @@ import { MY_ADDRESS } from './consts';
 import { upsertMyReaction } from 'src/store/features/reactions/myPostReactionsSlice';
 import { upsertFollowedSpaceIdsByAccount } from 'src/store/features/spaceIds/followedSpaceIdsSlice';
 
-export const MockedData: FC = ({ children }) => {
+export const MockedData: React.FC<{ children: React.ReactNode }>  = ({ children }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

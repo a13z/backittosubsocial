@@ -12,6 +12,7 @@ import { useAppDispatch } from 'src/store/app/store';
 import { AccountId, PostId } from '@subsocial/types/dto';
 import { Tab } from 'src/models/common/tabs';
 import { useTranslation } from 'react-i18next';
+import { ReactionKind } from '@subsocial/types/substrate/classes';
 
 interface ReactionType {
   account: AccountId;
@@ -41,7 +42,7 @@ const loadMoreReactionsFn = async (
 ) => {
   const { size, page, api, dispatch, postId } = loadMoreValues;
 
-  const ids = await loadSuggestedReactionsIds(api, postId);
+  let ids = await loadSuggestedReactionsIds(api, postId)
   let reactionsIds: Reaction[];
 
   reactionsIds = getReactionsIdsByPage(ids, size, page);
@@ -79,7 +80,7 @@ const ModalVotes: FC<ModalVotesProps> = ({ postId }) => {
   const { api } = useApi();
 
   const loadMore = useCallback(
-    (page, size) =>
+    (page: any, size: any) =>
       loadMoreReactionsFn({
         size,
         page,
@@ -109,7 +110,7 @@ const ModalVotes: FC<ModalVotesProps> = ({ postId }) => {
   }, [api, loadMore, postId]);
 
   const loadMoreNext = useCallback(
-    async (page, size) => {
+    async (page: any, size: any) => {
       const data = await loadMoreReactionsFn({
         size,
         page,
