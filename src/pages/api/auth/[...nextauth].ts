@@ -7,9 +7,13 @@ export const authOptions: NextAuthOptions = {
       MediumProvider({
         clientId: process.env.MEDIUM_CLIENT_ID,
         clientSecret: process.env.MEDIUM_CLIENT_SECRET,
-        checks: "state",
+        // checks: "state",
       }),
-        // ...add more providers here
+      TwitterProvider({
+        clientId: process.env.TWITTER_CLIENT_ID,
+        clientSecret: process.env.TWITTER_CLIENT_SECRET,
+        // version: "2.0", //
+      }),
       ],
       // callbacks: {
       //   async jwt({ token, account }) {
