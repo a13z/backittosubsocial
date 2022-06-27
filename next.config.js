@@ -13,14 +13,16 @@ const regexEqual = (x, y) => {
 
 module.exports = {
     reactStrictMode: true,
-    webpack: (config, { isServer }) => {
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
         const oneOf = config.module.rules.find(
             (rule) => typeof rule.oneOf === 'object'
         )
 
         if (oneOf) {
+            // console.log(oneOf)
             const moduleCssRule = oneOf.oneOf.find(
-                (rule) => regexEqual(rule.test, /\.module\.css$/)
+                // (rule) => regexEqual(rule.test, /\.module\.css$/)
+                (rule) => regexEqual(rule.test, /\.module\.(scss|sass)$/)
             )
 
             if (moduleCssRule) {
@@ -33,14 +35,19 @@ module.exports = {
             }
 
             const fixUse = (use) => {
+                // console.log('FixUse use')
+                // console.log(use)
                 if (use.loader.indexOf('css-loader') >= 0 && use.options.modules) {
                     use.options.modules.mode = 'local'
                 }
             }
 
             oneOf.oneOf.forEach((rule) => {
+                // console.log('Rule: ')
+                // console.log(rule)
                 if (Array.isArray(rule.use)) {
-                    rule.use.map(fixUse)
+                    // console.log(`rule.use: ${JSON.stringify(rule.use)}`)
+                    fixUse(rule.use[1])
                 } else if (rule.use && rule.use.loader) {
                     fixUse(rule.use)
                 }
