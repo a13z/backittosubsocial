@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
       //       session.accessToken = token.accessToken
       //       return session
       //   }
-      },
+      // },
       debug: true,
 }
 // export default NextAuth({
