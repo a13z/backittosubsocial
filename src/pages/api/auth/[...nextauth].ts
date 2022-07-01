@@ -13,12 +13,29 @@ export const authOptions: NextAuthOptions = {
         clientId: process.env.TWITTER_CLIENT_ID as string,
         clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
       }),
-      TwitterProvider({
-        clientId: process.env.TWITTER_CLIENT_ID as string,
-        clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
-        version: "2.0", //
-      }),
+      // TwitterProvider({
+      //   clientId: process.env.TWITTER_CLIENT_ID as string,
+      //   clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+      //   version: "2.0", //
+      // }),
       ],
+      callbacks: {
+        async jwt(token, user, account = {}, profile, isNewUser) {
+          if ( account.provider && !token[account.provider] ) {
+            token[account.provider] = {};
+          }
+    
+          if ( account.accessToken ) {
+            token[account.provider].accessToken = account.accessToken;
+          }
+    
+          if ( account.refreshToken ) {
+            token[account.provider].refreshToken = account.refreshToken;
+          }
+    
+          return token;
+        },
+      },
       // callbacks: {
       //   async jwt({ token, account }) {
       //       // Persist the OAuth access_token to the token right after signin
@@ -33,6 +50,7 @@ export const authOptions: NextAuthOptions = {
       //       return session
       //   }
       // },
+      secret: process.env.NEXTAUTH_SECRET as string,
       debug: true,
 }
 // export default NextAuth({
