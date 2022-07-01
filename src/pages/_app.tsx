@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps} : AppProps)
 
   return (
     <StyledEngineProvider injectFirst>
+      <SessionProvider session={pageProps.session} refetchInterval={0}>
       <Head>
         <title>rSocial</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -58,17 +59,16 @@ function MyApp({ Component, pageProps} : AppProps)
                     isShowingMobileBurger={isShowingMobileBurger}
                   />
                   <SwitchAccount />
-                  <SessionProvider session={pageProps.session} refetchInterval={0}>
                     <MainPage>
                       <Component {...pageProps} />
                     </MainPage>
-                  </SessionProvider>
                 </AuthProvider>
               </ApiProvider>
             </ResponsiveProvider>
           </ThemeProvider>
         </Provider>
       </I18nextProvider>
+      </SessionProvider>
     </StyledEngineProvider>
   );
 }
