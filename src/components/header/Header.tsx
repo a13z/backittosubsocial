@@ -22,6 +22,8 @@ import ButtonNotification from '../common/button/button-notification/ButtonNotif
 import ButtonSignIn from '../common/button/button-sign-in/ButtonSignIn';
 import ButtonProfile from '../common/button/button-profile/ButtonProfile';
 
+import { signIn, signOut, useSession } from 'next-auth/react';
+
 const Header: FC<HeaderProps> = ({
                                    label,
                                    isShowingMobileBurger,
@@ -35,7 +37,12 @@ const Header: FC<HeaderProps> = ({
   const { api } = useApi();
   const [ hasSpace, setHasSpace ] = useState(false);
   const { isDesktop } = useResponsiveSize();
+  const { data: session, status } = useSession();
 
+  useEffect(() => {
+    console.log('session', session);
+  }, [session]);
+  
   useEffect(() => {
     (async () => {
       if (!address) return null;
@@ -80,6 +87,7 @@ const Header: FC<HeaderProps> = ({
               <a>{label}</a>
             </Link>
           </Title>
+          { status === "authenticated" ? ( <p>Signed in as {session.user.email}</p> ) : null }
         </div>
 
         <Box className={styles.user}>
@@ -88,7 +96,7 @@ const Header: FC<HeaderProps> = ({
           ) : (
             <>
               {isDesktop && <ButtonEntity typeEntity={hasSpace ? 'post' : 'space'} />}
-
+              
               <ButtonNotification />
 
               <ButtonProfile
@@ -98,7 +106,7 @@ const Header: FC<HeaderProps> = ({
                 avatar={profile?.content?.avatar}
               />
             </>
-          )}
+            )}
         </Box>
       </Toolbar>
     </AppBar>

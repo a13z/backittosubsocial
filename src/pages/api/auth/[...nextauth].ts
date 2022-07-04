@@ -20,18 +20,30 @@ export const authOptions: NextAuthOptions = {
       // }),
       ],
       callbacks: {
-        async jwt(token, user, account = {}, profile, isNewUser) {
+        async jwt({token, account = {}}: {token: any, account: any}) {
+          console.log('neaxtauth....callbacks:')
+          console.log(token)
+          console.log(JSON.stringify(token), JSON.stringify(account));
           if ( account.provider && !token[account.provider] ) {
             token[account.provider] = {};
           }
-    
-          if ( account.accessToken ) {
-            token[account.provider].accessToken = account.accessToken;
-          }
-    
-          if ( account.refreshToken ) {
-            token[account.provider].refreshToken = account.refreshToken;
-          }
+          if (account.provider === 'twitter') {
+            if (account.oauth_token) {
+              token[account.provider].oauth_token = account.oauth_token;
+            }
+            if (account.oauth_token_secret) {
+              token[account.provider].oauth_token_secret = account.oauth_token_secret;
+            }
+          } else 
+          {
+            if ( account.accessToken ) {
+              token[account.provider].accessToken = account.accessToken;
+            }
+      
+            if ( account.refreshToken ) {
+              token[account.provider].refreshToken = account.refreshToken;
+            }
+        }
     
           return token;
         },
@@ -53,29 +65,5 @@ export const authOptions: NextAuthOptions = {
       secret: process.env.NEXTAUTH_SECRET as string,
       debug: true,
 }
-// export default NextAuth({
-//   // Configure one or more authentication providers
-//   providers: [
-//     MediumProvider({
-//       clientId: process.env.MEDIUM_ID,
-//       clientSecret: process.env.MEDIUM_SECRET,
-//     }),
-//     // ...add more providers here
-//   ],
-//   callbacks: {
-//     async jwt({ token, account }) {
-//         // Persist the OAuth access_token to the token right after signin
-//         if (account) {
-//         token.accessToken = account.access_token
-//         }
-//         return token
-//     },
-//     async session({ session, token, user }) {
-//         // Send properties to the client, like an access_token from a provider.
-//         session.accessToken = token.accessToken
-//         return session
-//     }
-//   },
-// })
 
 export default NextAuth(authOptions)
