@@ -9,30 +9,30 @@ export const authOptions: NextAuthOptions = {
         clientSecret: process.env.MEDIUM_CLIENT_SECRET as string,
         // checks: "state",
       }),
-      TwitterProvider({
-        clientId: process.env.TWITTER_CLIENT_ID as string,
-        clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
-      }),
       // TwitterProvider({
       //   clientId: process.env.TWITTER_CLIENT_ID as string,
       //   clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
-      //   version: "2.0", //
       // }),
+      TwitterProvider({
+        clientId: process.env.TWITTER_CLIENT_ID as string,
+        clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+        version: "2.0", //
+      }),
       ],
       callbacks: {
         async jwt({token, account = {}}: {token: any, account: any}) {
           console.log('neaxtauth....callbacks:')
-          console.log(token)
+          // console.log(token)
           console.log(JSON.stringify(token), JSON.stringify(account));
           if ( account.provider && !token[account.provider] ) {
             token[account.provider] = {};
           }
           if (account.provider === 'twitter') {
-            if (account.oauth_token) {
-              token[account.provider].oauth_token = account.oauth_token;
+            if (account.access_token) {
+              token[account.provider].access_token = account.access_token;
             }
-            if (account.oauth_token_secret) {
-              token[account.provider].oauth_token_secret = account.oauth_token_secret;
+            if (account.refresh_token) {
+              token[account.provider].refresh_token = account.refresh_token;
             }
           } else 
           {
