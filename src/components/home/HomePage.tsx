@@ -54,6 +54,7 @@ const ButtonBar = () => {
         { label: t('tabs.feed'), tabValue: 'feeds' },
         { label: t('tabs.posts'), tabValue: 'posts' },
         { label: t('tabs.spaces'), tabValue: 'spaces' },
+        { label: t('tabs.tweets'), tabValue: 'tweets' },
       ]
     : [
         { label: t('tabs.posts'), tabValue: 'posts' },

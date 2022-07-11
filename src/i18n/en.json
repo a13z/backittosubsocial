@@ -36,7 +36,8 @@
     "spaces": "spaces",
     "article": "article",
     "video": "video",
-    "feed": "my feed"
+    "feed": "my feed",
+    "tweets": "tweets"
   },
   "buttons": {
     "cancel": "Cancel",
