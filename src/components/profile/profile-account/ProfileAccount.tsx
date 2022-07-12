@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { useResponsiveSize } from "../../responsive/ResponsiveContext";
 import { TypeContent } from "../../../models/common/button";
 import ButtonSendTips from '../../common/button/button-send-tips/ButtonSendTips';
-import ButtonWritePost from '../../common/button/button-wtire-post/ButtonWritePost';
+import ButtonWritePost from '../../common/button/button-write-post/ButtonWritePost';
 import { config } from 'src/config';
 
 const ProfileAccount: FC<ProfileAccountProps> = (props) => {

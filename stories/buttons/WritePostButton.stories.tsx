@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import { ComponentProps } from 'react';
-import ButtonWritePost from 'src/components/common/button/button-wtire-post/ButtonWritePost';
+import ButtonWritePost from 'src/components/common/button/button-write-post/ButtonWritePost';
 
 export default {
   component: ButtonWritePost,

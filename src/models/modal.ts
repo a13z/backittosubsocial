@@ -40,6 +40,13 @@ export interface ModalQrProps extends Partial<ModalMaterialProps> {
   open: boolean;
 }
 
+export interface ModalImportProps extends Partial<ModalMaterialProps> {
+  onClose: () => void;
+  open: boolean;
+  url: string;
+  setUrl: (url: string) => void;
+}
+
 export type ModalSignInProps = Omit<ModalProps, 'children'> & {
   status: ACCOUNT_STATUS;
   isAlert?: boolean;

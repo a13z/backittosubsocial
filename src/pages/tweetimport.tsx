@@ -4,6 +4,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 import Link from 'next/link'
 import Layout from '../components/layout/Layout';
+import Input from '../inputs/input/Input';
 
 import { useTable } from 'react-table'
 
@@ -48,7 +49,7 @@ function Table({ columns, data }) {
   )
 }
 
-const TweetsPage = () => {
+const TweetsV2Page = () => {
   const [statuses, setStatuses] = useState();
   const columns = React.useMemo(
     () => [
@@ -77,7 +78,7 @@ const TweetsPage = () => {
     const formData = new FormData(e.currentTarget);
     const query = formData.get('query');
 
-    const results = await fetch('/api/twitter/search', {
+    const results = await fetch('/api/twitter/searchv2', {
       method: 'POST',
       body: JSON.stringify({
         query
@@ -92,7 +93,7 @@ const TweetsPage = () => {
       <h1>Tweets </h1>
       <form onSubmit={handleOnSearchSubmit}>
         <h2>Search</h2>
-        <input type="search" name="query" />
+        <Input type="search" name="query" />
         <button>Search</button>
        </form>
        
@@ -102,16 +103,6 @@ const TweetsPage = () => {
     </Layout>
   )
 }
-// const AboutPage = () => (
-//     <Layout title="About | Next.js + TypeScript Example">
-//     <h1>About</h1>
-//     <p>This is the about page</p>
-//     <p>
-//       <Link href="/">
-//         <a>Go home</a>
-//       </Link>
-//     </p>
-//   </Layout>
-// )
 
-export default TweetsPage
+
+export default TweetsV2Page

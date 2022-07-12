@@ -44,3 +44,34 @@ $letter_spacing: 0.15px
 
 .post
   border: 1px solid $color_button_outline
+
+.modal
+  display: flex
+  justify-content: center
+  align-items: center
+
+.close
+  position: absolute
+  right: 0
+  top: 0
+  margin: $space_normal
+  padding: 0
+  z-index: 2
+
+.box
+  display: flex
+  flex-direction: column
+  gap: $space_big
+  max-width: 780px
+  min-height: 200px
+  max-height: 90%
+  width: 100%
+  position: relative
+  padding: $space_normal
+  border-radius: 0.25rem
+  overflow: auto
+
+.form
+  display: flex
+  flex-direction: column
+  gap: $space_normal

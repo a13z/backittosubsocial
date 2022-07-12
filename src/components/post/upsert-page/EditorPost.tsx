@@ -35,6 +35,11 @@ import { useTranslation } from 'react-i18next';
 import { config } from 'src/config';
 import { unpinIpfsCid } from 'src/components/utils/unpinIpfsCid';
 
+import ButtonImportPost from 'src/components/common/button/button-import-post/ButtonImportPost';
+import { useModal } from 'src/hooks/useModal';
+import Modal from '../../modal/Modal';
+import ModalImport from '../../modal/modal-import/ModalImport';
+
 export const EditorPost: FC<EditorPostProps> = (props) => {
   const { postId, isWithLink } = props;
   const address = useMyAddress();
@@ -61,6 +66,8 @@ export const EditorPost: FC<EditorPostProps> = (props) => {
   const [ cidImage, setCidImage ] = useState<IpfsCid>();
 
   const regularPostExtention = {RegularPost: null};
+
+  const { isVisible, toggleModal } = useModal();
 
   const initData = () => {
     setTags(initialPostValue.tags || []);
@@ -127,6 +134,11 @@ export const EditorPost: FC<EditorPostProps> = (props) => {
   const handleLink = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setLink(event.target.value);
   };
+
+  const handleImportTweet = (url: string) => {
+    console.log('click import ', url);
+  };
+
 
   const reset = postId
     ? () => initData()
@@ -210,6 +222,8 @@ export const EditorPost: FC<EditorPostProps> = (props) => {
           <Title type={TitleSizes.DETAILS}>
             {postId ? t('forms.titles.editPost') : t('forms.titles.newPost')}
           </Title>
+
+          <ModalImport></ModalImport>
 
           {!isSharedPost && (
             <Tabs

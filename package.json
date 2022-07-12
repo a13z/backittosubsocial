@@ -32,6 +32,7 @@
     "adblock-detect-react": "^1.0.5",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
+    "dependency-cruiser": "^11.11.0",
     "dotenv-webpack": "^7.0.3",
     "easymde": "^2.15.0",
     "i18next": "^21.6.10",
